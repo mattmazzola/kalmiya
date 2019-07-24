@@ -1,28 +1,219 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
+#root {
+  height: 100vh;
   color: white;
 }
 
-.App-title {
-  font-size: 1.5em;
+.kl-app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  position: relative;
 }
 
-.App-intro {
-  font-size: large;
+.kl-video {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.kl-canvas {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+}
+
+.kl-chat {
+  position: absolute;
+  bottom: 1em;
+  right: 1em;
+
+  display: grid;
+  grid-gap: 0.5em;
+  width: 300px;
+}
+
+.kl-chat_text {
+  border-radius: 6px;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  padding: 0.5em 0.75em;
+  box-shadow: 0px 0px 2px 2px rgba(255, 255, 255, 0.15);
+  animation: fadeOut 2s ease-in 10s forwards;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1.0;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.kl-chat_text--user {
+  margin-right: 2em;
+  border-left: 3px solid rgb(57, 255, 100);
+}
+.kl-chat_text--bot {
+  margin-left: 2em;
+  text-align: right;
+  border-right: 3px solid rgb(255, 171, 14);
+}
+
+.kl-talk {
+  --diameter: 15ch;
+  left: calc(50% - var(--diameter) / 2);
+  position: absolute;
+  width: var(--diameter);
+  bottom: 2em;
+
+  display: grid;
+  grid-gap: 1em;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  text-shadow: 0px 0px 6px rgba(0,0,0,0.2);
+}
+
+.kl-button-talk {
+  width: var(--diameter);
+  height: var(--diameter);
+  background: rgba(0,0,0,0.5);
+  border-radius: 50%;
+  border: 3px solid rgba(255,255,255,0.4);
+  color: white;
+  cursor: pointer;
+  box-shadow: 0px 0px 6px 4px rgba(0,0,0,0.2);
+}
+.kl-talk_description {
+  text-shadow: 0px 0px 6px black;
+}
+
+.kl-button-talk .material-icons {
+  font-size: 5em;
+  vertical-align: sub;
+}
+
+.kl-photo {
+  --diameter: 10ch;
+  left: calc(50% - var(--diameter) / 2 + 15ch);
+  position: absolute;
+  width: var(--diameter);
+  bottom: 2em;
+
+  display: grid;
+  grid-gap: 1em;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+.kl-photo_description {
+  text-shadow: 0px 0px 6px black;
+}
+
+.kl-button-photo {
+  width: var(--diameter);
+  height: var(--diameter);
+  background: rgba(0,0,0,0.5);
+  border-radius: 50%;
+  border: 3px solid rgba(255,255,255,0.4);
+  color: white;
+  cursor: pointer;
+  box-shadow: 0px 0px 6px 4px rgba(0,0,0,0.2);
+}
+
+.kl-button-photo .material-icons {
+  font-size: 3em;
+  vertical-align: sub;
+}
+
+.kl-button-talk--active {
+  --color: red;
+  border-color: var(--color);
+  color: var(--color);
+}
+
+.kl-snapshots-panel {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 200px;
+
+  overflow: hidden;
+}
+
+.kl-snapshots-panel--active {
+  background: rgba(0,0,0,0.2);
+}
+
+.kl-snapshots {
+  padding: 1em;
+  display: grid;
+  grid-auto-rows: min-content;
+  grid-gap: 1em;
+}
+
+.kl-snapshot {
+  cursor: pointer;
+  border: none;
+  background: none;
+  margin: 0;
+  padding: 0;
+}
+.kl-snapshot img {
+  display: block;
+  width: 100%;
+}
+
+.kl-debug {
+  opacity: 0;
+  position: absolute;
+  right: 2em;
+  top: 2em;
+
+  display: grid;
+  grid-gap: 0.2em;
+}
+
+.kl-button {
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 6px;
+  background: rgba(0,0,0,0.5);
+  color: white;
+  cursor: pointer;
+  padding: 1em;
+}
+
+.kl-clear-canvas-button {
+  position: absolute;
+  bottom: 1em;
+  left: 16em;
+  border: none;
+  background: none;
+
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: min-content;
+  grid-gap: 0.5em;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.25em;
+  justify-content: right;
+  text-align: right;
+  text-shadow: 0 0 10px black;
+}
+
+.kl-clear-messages-button {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: min-content;
+  grid-gap: 0.5em;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.25em;
+  justify-content: right;
+  text-align: right;
+  text-shadow: 0 0 10px black;
 }
